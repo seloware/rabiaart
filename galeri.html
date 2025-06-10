@@ -151,6 +151,14 @@
                 once: true
             });
 
+            // Mobil menü için
+            const nav = document.querySelector('nav');
+            const menu = document.querySelector('.menu');
+
+            menu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+
             // Giriş durumunu kontrol et ve admin öğelerini göster/gizle
             function updateAdminElements() {
                 const isLoggedIn = checkLoginStatus();

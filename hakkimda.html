@@ -171,6 +171,14 @@
             // Sayfa yüklendiğinde ve giriş durumu değiştiğinde butonu güncelle
             updateLoginButton();
             document.addEventListener('loginStatusChanged', updateLoginButton);
+
+            // Mobil menü için
+            const nav = document.querySelector('nav');
+            const menu = document.querySelector('.menu');
+
+            menu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
         });
     </script>
 </body>
