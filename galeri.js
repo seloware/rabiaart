@@ -94,6 +94,13 @@ function filterImages(filter = 'all') {
 let currentIndex = 0;
 let currentImages = [];
 
+// Touch variables for mobile panning
+let touchStartX = 0;
+let touchStartY = 0;
+let currentX = 0;
+let currentY = 0;
+let isDragging = false;
+
 // Lightbox içeriğini güncelle
 function updateLightboxContent() {
     const lightbox = document.querySelector('.lightbox');
@@ -140,6 +147,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = lightbox.querySelector('.lightbox-close');
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
+    const lightboxImg = lightbox.querySelector('.lightbox-image img');
+
+    // Touch event handlers for mobile panning
+    lightboxImg.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        touchStartX = e.touches[0].clientX - currentX;
+        touchStartY = e.touches[0].clientY - currentY;
+        lightboxImg.style.transition = 'none';
+    });
+
+    lightboxImg.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault(); // Prevent default scrolling
+        currentX = e.touches[0].clientX - touchStartX;
+        currentY = e.touches[0].clientY - touchStartY;
+        lightboxImg.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    });
+
+    lightboxImg.addEventListener('touchend', () => {
+        isDragging = false;
+        lightboxImg.style.transition = 'transform 0.3s ease-out';
+        lightboxImg.style.transform = 'translate(0, 0)';
+        currentX = 0;
+        currentY = 0;
+    });
+
+    // Reset transform when changing images
+    function resetImageTransform() {
+        lightboxImg.style.transform = 'translate(0, 0)';
+        currentX = 0;
+        currentY = 0;
+    }
+
+    // Add resetImageTransform to navigation functions
+    const originalShowPreviousImage = showPreviousImage;
+    const originalShowNextImage = showNextImage;
+
+    window.showPreviousImage = function() {
+        resetImageTransform();
+        originalShowPreviousImage();
+    };
+
+    window.showNextImage = function() {
+        resetImageTransform();
+        originalShowNextImage();
+    };
 
     // Navigasyon butonları tıklama olayları
     prevBtn.addEventListener('click', showPreviousImage);
