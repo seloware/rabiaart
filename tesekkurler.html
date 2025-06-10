@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teşekkürler - RabiaDoğruözArt</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Rabia Doğruöz Art</a>
+        <ul>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="yukle.html">Resim Yükle</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
+        </ul>
+        <div class="menu">
+            <div class="toggle"></div>
+        </div>
+    </nav>
+
+    <section class="thank-you-section">
+        <div class="thank-you-container">
+            <div class="thank-you-content">
+                <i class="fas fa-check-circle"></i>
+                <h1>Teşekkürler!</h1>
+                <p>Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağım.</p>
+                <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .thank-you-section {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .thank-you-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .thank-you-content i {
+            font-size: 5em;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-content h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-content p {
+            color: #6c757d;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #95a5a6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+
+    <script>
+        const nav = document.querySelector('nav');
+        const menu = document.querySelector('.menu');
+
+        menu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 

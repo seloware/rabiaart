@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - RabiaDoğruözArt</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Rabia Doğruöz Art</a>
+        <ul>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="iletisim.html" class="active">İletişim</a></li>
+            <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
+        </ul>
+        <div class="menu">
+            <div class="toggle"></div>
+        </div>
+    </nav>
+
+    <section class="contact-section">
+        <div class="contact-hero">
+            <h1>İletişime Geçin</h1>
+            <p>Sorularınız, işbirliği teklifleriniz veya sanat eserlerim hakkında görüşleriniz için benimle iletişime geçebilirsiniz.</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>E-posta</h3>
+                        <p>dogruozrabia98@gmail.com</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Atölye</h3>
+                        <p>Ankara, Türkiye</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contact-form" action="https://formsubmit.co/dogruozrabia98@gmail.com" method="POST">
+                        <!-- FormSubmit için gerekli ayarlar -->
+                        <input type="hidden" name="_subject" value="Yeni İletişim Formu Mesajı">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://rabiadogruoz.com/tesekkurler.html">
+
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="E-posta Adresiniz" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Konu" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Mesajınız" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span>Mesaj Gönder</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımda</h3>
+                <p>Ben Rabia Doğruöz. Dijital sanat ve illüstrasyon alanında çalışmalar yapıyorum. Sanatımla duyguları ve hikayeleri görsel bir dille anlatmaya çalışıyorum.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://behance.net" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="https://pinterest.com" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Bağlantılar</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                    <li><a href="hakkimda.html"><i class="fas fa-user"></i> Hakkımda</a></li>
+                    <li><a href="galeri.html"><i class="fas fa-images"></i> Galeri</a></li>
+                    <li><a href="iletisim.html"><i class="fas fa-envelope"></i> İletişim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul class="footer-links">
+                    <li><a href="galeri.html?category=yagli-boya"><i class="fas fa-paint-brush"></i> Yağlı Boya</a></li>
+                    <li><a href="galeri.html?category=karakalem"><i class="fas fa-pencil-alt"></i> Karakalem</a></li>
+                    <li><a href="galeri.html?category=dijital"><i class="fas fa-desktop"></i> Dijital Sanat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:dogruozrabia98@gmail.com"><i class="fas fa-envelope"></i> dogruozrabia98@gmail.com</a></li>
+                    <li><a href="https://maps.google.com" target="_blank"><i class="fas fa-map-marker-alt"></i> Ankara, Türkiye</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rabia Doğruöz. Tüm hakları saklıdır. | <a href="gizlilik.html">Gizlilik Politikası</a> | <a href="kullanim-sartlari.html">Kullanım Şartları</a></p>
+        </div>
+    </footer>
+
+    <style>
+        .contact-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .contact-hero h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-hero p {
+            color: #6c757d;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .contact-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card i {
+            font-size: 2em;
+            color: #95a5a6;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-card p {
+            color: #6c757d;
+            font-size: 0.95em;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #495057;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #95a5a6;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(149, 165, 166, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #7f8c8d;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .submit-btn i {
+            font-size: 18px;
+        }
+
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: row;
+            }
+
+            .info-card {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 60px 0;
+            }
+
+            .contact-hero h1 {
+                font-size: 2em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero {
+                margin-bottom: 40px;
+            }
+
+            .contact-wrapper {
+                padding: 0 15px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <style>
+        .contact-section {
+            padding: 60px 20px;
+            background-color: #f8f9fa;
+            min-height: calc(100vh - 80px);
+        }
+
+        .contact-hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .contact-hero h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .contact-hero p {
+            color: #6c757d;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card i {
+            font-size: 2em;
+            color: #95a5a6;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-card p {
+            color: #6c757d;
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #495057;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #95a5a6;
+            background-color: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #7f8c8d;
+        }
+
+        .submit-btn i {
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                flex-direction: row;
+            }
+
+            .info-card {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            // Submit butonunu devre dışı bırak
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <span>Gönderiliyor...</span>
+                <i class="fas fa-spinner fa-spin"></i>
+            `;
+        });
+    </script>
+
+    <script>
+        const nav = document.querySelector('nav');
+        const menu = document.querySelector('.menu');
+
+        menu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 

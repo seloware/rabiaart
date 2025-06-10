@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resim Yükle - RabiaDoğruözArt</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="script.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Rabia Doğruöz Art</a>
+        <ul>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li class="upload-nav-item" style="display: none;"><a href="yukle.html" class="active">Resim Yükle</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
+        </ul>
+        <div class="menu">
+            <div class="toggle"></div>
+        </div>
+    </nav>
+
+    <div id="auth-check">
+        <script>
+            // Sayfa yüklendiğinde giriş kontrolü yap
+            document.addEventListener('DOMContentLoaded', function() {
+                // checkLoginStatus fonksiyonu script.js'den geliyor
+                if (typeof checkLoginStatus === 'function' && !checkLoginStatus()) {
+                    window.location.href = 'auth.html';
+                }
+            });
+        </script>
+    </div>
+
+    <section id="upload" class="upload-section">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h1>Yeni Eser Ekle</h1>
+            </div>
+
+            <form id="upload-form" class="upload-form">
+                <div class="upload-preview">
+                    <div class="preview-area" id="preview-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Resminizi buraya sürükleyin veya seçin</p>
+                        <input type="file" id="image-file" name="image" accept="image/*" required>
+                    </div>
+                    <div class="preview-image">
+                        <img id="image-preview" src="" alt="">
+                    </div>
+                </div>
+
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="text" id="image-title" name="title" required placeholder="Eser Başlığı">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="image-description" name="description" rows="3" placeholder="Eser Açıklaması"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="image-category" name="category" required>
+                            <option value="" disabled selected>Kategori Seçin</option>
+                            <option value="yagli-boya">Yağlı Boya</option>
+                            <option value="karakalem">Karakalem</option>
+                            <option value="dijital">Dijital</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="upload-btn">
+                        <i class="fas fa-upload"></i>
+                        Eseri Yükle
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <style>
+        .upload-section {
+            padding: 40px 20px;
+            background-color: #f8f9fa;
+            min-height: calc(100vh - 200px);
+        }
+
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .upload-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-header h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .upload-preview {
+            margin-bottom: 30px;
+        }
+
+        .preview-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .preview-area.highlight {
+            border-color: #95a5a6;
+            background-color: #f1f3f5;
+            transform: scale(1.01);
+        }
+
+        .preview-area i {
+            font-size: 48px;
+            color: #adb5bd;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .preview-area.highlight i {
+            color: #95a5a6;
+            transform: scale(1.1);
+        }
+
+        .preview-area p {
+            color: #6c757d;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .preview-area.highlight p {
+            color: #2c3e50;
+        }
+
+        .preview-area input[type="file"] {
+            display: none;
+        }
+
+        .preview-image {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .preview-image img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #495057;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #adb5bd;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(149, 165, 166, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .upload-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .upload-btn:hover {
+            background-color: #7f8c8d;
+            transform: translateY(-1px);
+        }
+
+        .upload-btn:active {
+            transform: translateY(0);
+        }
+
+        .upload-btn i {
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .upload-container {
+                padding: 20px;
+            }
+
+            .preview-area {
+                padding: 20px;
+            }
+
+            .preview-area i {
+                font-size: 36px;
+            }
+
+            .preview-area p {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('image-file');
+            const previewArea = document.getElementById('preview-area');
+            const previewImage = document.getElementById('image-preview');
+            const uploadForm = document.getElementById('upload-form');
+
+            // Dosya seçildiğinde önizleme göster
+            imageInput.addEventListener('change', function(e) {
+                const file = this.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    showPreview(file);
+                } else {
+                    alert('Lütfen geçerli bir resim dosyası seçin.');
+                }
+            });
+
+            // Sürükle-bırak olayları
+            previewArea.addEventListener('click', () => imageInput.click());
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                previewArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                previewArea.addEventListener(eventName, () => {
+                    previewArea.classList.add('highlight');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                previewArea.addEventListener(eventName, () => {
+                    previewArea.classList.remove('highlight');
+                });
+            });
+
+            previewArea.addEventListener('drop', handleDrop);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+
+                if (file && file.type.startsWith('image/')) {
+                    imageInput.files = dt.files;
+                    showPreview(file);
+                } else {
+                    alert('Lütfen geçerli bir resim dosyası seçin.');
+                }
+            }
+
+            function showPreview(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    previewArea.style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+
+            // Form gönderme işlemi
+            uploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(uploadForm);
+                
+                if (!formData.get('image') || !formData.get('title') || !formData.get('category')) {
+                    alert('Lütfen tüm gerekli alanları doldurun.');
+                    return;
+                }
+
+                try {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const newImageData = {
+                            src: e.target.result,
+                            title: formData.get('title'),
+                            category: formData.get('category'),
+                            categoryName: getCategoryName(formData.get('category')),
+                            description: formData.get('description') || '',
+                            year: new Date().getFullYear().toString()
+                        };
+
+                        let savedImages = JSON.parse(localStorage.getItem('galleryImages') || '[]');
+                        savedImages.push(newImageData);
+                        localStorage.setItem('galleryImages', JSON.stringify(savedImages));
+
+                        alert('Resim başarıyla yüklendi!');
+                        uploadForm.reset();
+                        previewImage.style.display = 'none';
+                        previewArea.style.display = 'block';
+                        
+                        // Galeri sayfasına yönlendir
+                        setTimeout(() => {
+                            window.location.href = 'galeri.html';
+                        }, 1500);
+                    };
+                    reader.readAsDataURL(formData.get('image'));
+                } catch (error) {
+                    alert('Resim yüklenirken bir hata oluştu.');
+                    console.error(error);
+                }
+            });
+
+            function getCategoryName(category) {
+                const categoryMap = {
+                    'yagli-boya': 'Yağlı Boya',
+                    'karakalem': 'Karakalem',
+                    'dijital': 'Dijital'
+                };
+                return categoryMap[category] || category;
+            }
+        });
+    </script>
+</body>
+</html> 

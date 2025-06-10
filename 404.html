@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfa Bulunamadı - RabiaDoğruözArt</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- Ziyaretçi İzleme -->
+    <script>
+        function trackVisitor() {
+            const visitorData = {
+                timestamp: new Date().toISOString(),
+                page: window.location.pathname,
+                referrer: document.referrer,
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                language: navigator.language,
+                userAgent: navigator.userAgent
+            };
+            
+            const visits = JSON.parse(localStorage.getItem('visits') || '[]');
+            visits.push(visitorData);
+            localStorage.setItem('visits', JSON.stringify(visits));
+
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon('/api/track-visit', JSON.stringify(visitorData));
+            }
+        }
+
+        window.addEventListener('load', trackVisitor);
+    </script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .error-message {
+            font-size: 24px;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        .error-description {
+            font-size: 18px;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #555;
+        }
+
+        .error-suggestions {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+        }
+
+        .error-suggestions h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .error-suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .error-suggestions li {
+            margin: 10px 0;
+        }
+
+        .error-suggestions li i {
+            margin-right: 10px;
+            color: #666;
+        }
+
+        .error-suggestions a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .error-suggestions a:hover {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Rabia Doğruöz Art</a>
+        <ul>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
+        </ul>
+        <div class="menu">
+            <div class="toggle"></div>
+        </div>
+    </nav>
+
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Sayfa Bulunamadı</h2>
+        <p class="error-description">
+            Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir.
+        </p>
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i> Ana Sayfaya Dön
+        </a>
+
+        <div class="error-suggestions">
+            <h3>Şunları deneyebilirsiniz:</h3>
+            <ul>
+                <li>
+                    <i class="fas fa-check"></i>
+                    URL adresini doğru yazdığınızdan emin olun
+                </li>
+                <li>
+                    <i class="fas fa-sync-alt"></i>
+                    Sayfayı yenileyin
+                </li>
+                <li>
+                    <i class="fas fa-search"></i>
+                    <a href="galeri.html">Galeri</a>'yi ziyaret edin
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="iletisim.html">İletişim</a> sayfasından bize ulaşın
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımda</h3>
+                <p>Ben Rabia Doğruöz. Dijital sanat ve illüstrasyon alanında çalışmalar yapıyorum. Sanatımla duyguları ve hikayeleri görsel bir dille anlatmaya çalışıyorum.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://behance.net" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="https://pinterest.com" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rabia Doğruöz. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.querySelector('nav');
+        const menu = document.querySelector('.menu');
+
+        menu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 

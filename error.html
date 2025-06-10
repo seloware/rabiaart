@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bir Hata Oluştu - RabiaDoğruözArt</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- Ziyaretçi İzleme -->
+    <script>
+        function trackVisitor() {
+            const visitorData = {
+                timestamp: new Date().toISOString(),
+                page: window.location.pathname,
+                referrer: document.referrer,
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                language: navigator.language,
+                userAgent: navigator.userAgent
+            };
+            
+            const visits = JSON.parse(localStorage.getItem('visits') || '[]');
+            visits.push(visitorData);
+            localStorage.setItem('visits', JSON.stringify(visits));
+
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon('/api/track-visit', JSON.stringify(visitorData));
+            }
+        }
+
+        window.addEventListener('load', trackVisitor);
+    </script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-icon {
+            font-size: 80px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 32px;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .error-description {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .error-code {
+            font-family: monospace;
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        .primary-button {
+            background-color: #333;
+            color: white;
+        }
+
+        .primary-button:hover {
+            background-color: #555;
+        }
+
+        .secondary-button {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 2px solid #333;
+        }
+
+        .secondary-button:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .support-info {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            max-width: 600px;
+        }
+
+        .support-info h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .support-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .support-info .contact-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .support-info .contact-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Rabia Doğruöz Art</a>
+        <ul>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
+        </ul>
+        <div class="menu">
+            <div class="toggle"></div>
+        </div>
+    </nav>
+
+    <div class="error-container">
+        <i class="fas fa-exclamation-circle error-icon"></i>
+        <h1 class="error-message">Bir Hata Oluştu</h1>
+        <div class="error-code">
+            <span id="errorCode">500</span>
+        </div>
+        <p class="error-description">
+            Üzgünüz, isteğinizi işlerken beklenmeyen bir hata oluştu. 
+            Teknik ekibimiz bu sorunu çözmek için çalışıyor.
+        </p>
+
+        <div class="button-group">
+            <a href="index.html" class="action-button primary-button">
+                <i class="fas fa-home"></i> Ana Sayfaya Dön
+            </a>
+            <a href="javascript:location.reload()" class="action-button secondary-button">
+                <i class="fas fa-sync-alt"></i> Sayfayı Yenile
+            </a>
+        </div>
+
+        <div class="support-info">
+            <h3>Yardıma mı ihtiyacınız var?</h3>
+            <p>Sorun devam ederse, lütfen bizimle iletişime geçin:</p>
+            <a href="iletisim.html" class="contact-link">
+                <i class="fas fa-envelope"></i> İletişim Formu
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımda</h3>
+                <p>Ben Rabia Doğruöz. Dijital sanat ve illüstrasyon alanında çalışmalar yapıyorum. Sanatımla duyguları ve hikayeleri görsel bir dille anlatmaya çalışıyorum.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://behance.net" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="https://pinterest.com" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rabia Doğruöz. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menü toggle işlevi
+        const nav = document.querySelector('nav');
+        const menu = document.querySelector('.menu');
+
+        menu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+
+        // URL'den hata kodunu al ve göster
+        function getErrorCode() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code') || '500';
+            document.getElementById('errorCode').textContent = code;
+            
+            // Hata koduna göre mesajı güncelle
+            const errorMessage = document.querySelector('.error-message');
+            const errorDescription = document.querySelector('.error-description');
+            
+            switch(code) {
+                case '500':
+                    errorMessage.textContent = 'Bir Hata Oluştu';
+                    errorDescription.textContent = 'Üzgünüz, isteğinizi işlerken beklenmeyen bir hata oluştu. Teknik ekibimiz bu sorunu çözmek için çalışıyor.';
+                    break;
+                case '503':
+                    errorMessage.textContent = 'Hizmet Kullanılamıyor';
+                    errorDescription.textContent = 'Üzgünüz, şu anda hizmetimiz geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.';
+                    break;
+                case '401':
+                    errorMessage.textContent = 'Yetkisiz Erişim';
+                    errorDescription.textContent = 'Bu sayfaya erişmek için yetkiniz bulunmuyor. Lütfen giriş yapın veya erişim izninizi kontrol edin.';
+                    break;
+                case '403':
+                    errorMessage.textContent = 'Erişim Reddedildi';
+                    errorDescription.textContent = 'Bu sayfaya erişiminiz reddedildi. Gerekli izinlere sahip olduğunuzdan emin olun.';
+                    break;
+            }
+        }
+
+        // Sayfa yüklendiğinde hata kodunu göster
+        window.addEventListener('load', getErrorCode);
+    </script>
+</body>
+</html> 
