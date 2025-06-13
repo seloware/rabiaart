@@ -46,18 +46,6 @@
                     <i class="fas fa-border-all" style="color: #000;"></i>
                     Tümü
                 </button>
-                <button class="filter-btn" data-filter="yagli-boya" style="color: #000;">
-                    <i class="fas fa-paint-brush" style="color: #000;"></i>
-                    Yağlı Boya
-                </button>
-                <button class="filter-btn" data-filter="karakalem" style="color: #000;">
-                    <i class="fas fa-pencil-alt" style="color: #000;"></i>
-                    Karakalem
-                </button>
-                <button class="filter-btn" data-filter="dijital" style="color: #000;">
-                    <i class="fas fa-desktop" style="color: #000;"></i>
-                    Dijital
-                </button>
             </div>
 
             <div class="gallery-grid" id="gallery-grid">
@@ -115,15 +103,6 @@
                     <li><a href="hakkimda.html"><i class="fas fa-user"></i> Hakkımda</a></li>
                     <li><a href="galeri.html"><i class="fas fa-images"></i> Galeri</a></li>
                     <li><a href="iletisim.html"><i class="fas fa-envelope"></i> İletişim</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Kategoriler</h3>
-                <ul class="footer-links">
-                    <li><a href="galeri.html?category=yagli-boya"><i class="fas fa-paint-brush"></i> Yağlı Boya</a></li>
-                    <li><a href="galeri.html?category=karakalem"><i class="fas fa-pencil-alt"></i> Karakalem</a></li>
-                    <li><a href="galeri.html?category=dijital"><i class="fas fa-desktop"></i> Dijital Sanat</a></li>
                 </ul>
             </div>
 
@@ -206,7 +185,7 @@
                             <img src="${img.src}" alt="${img.title}">
                             <div class="gallery-overlay">
                                 <div class="gallery-info">
-                                    <p>${img.categoryName}, ${img.year}</p>
+                                    <p>${img.year}</p>
                                     <div class="gallery-actions">
                                         <button class="action-btn zoom-btn" title="Büyüt">
                                             <i class="fas fa-search-plus"></i>
@@ -268,7 +247,7 @@
                 
                 const currentImage = window.currentImages[window.currentIndex];
                 lightboxImg.src = currentImage.src;
-                lightboxDesc.textContent = `${currentImage.categoryName}, ${currentImage.year}`;
+                lightboxDesc.textContent = `${currentImage.year}`;
 
                 // Gezinme butonlarını güncelle
                 prevNav.style.display = window.currentIndex > 0 ? 'flex' : 'none';

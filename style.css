@@ -181,16 +181,7 @@ nav ul li a.active::after {
 }
 
 .login-btn {
-    background-color: var(--secondary-color);
-    color: var(--white) !important;
-    padding: 0.5rem 1.5rem;
-    border-radius: 25px;
-    transition: var(--transition);
-}
-
-.login-btn:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
+    display: none !important;
 }
 
 /* Home Section Styles */

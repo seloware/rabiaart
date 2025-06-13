@@ -5,7 +5,7 @@ const defaultImages = [
         title: 'Bahar Çiçekleri',
         category: 'yagli-boya',
         categoryName: 'Yağlı Boya',
-        year: '2024',
+        year: '2025',
         isDefault: true
     },
     {
@@ -13,7 +13,7 @@ const defaultImages = [
         title: 'Portre Çalışması',
         category: 'karakalem',
         categoryName: 'Karakalem',
-        year: '2024',
+        year: '2025',
         isDefault: true
     },
     {
@@ -21,22 +21,124 @@ const defaultImages = [
         title: 'Modern Kompozisyon',
         category: 'dijital',
         categoryName: 'Dijital',
-        year: '2024',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.26.jpeg',
+        title: 'Yeni Eser 1',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25 (6).jpeg',
+        title: 'Yeni Eser 2',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25 (5).jpeg',
+        title: 'Yeni Eser 3',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25 (4).jpeg',
+        title: 'Yeni Eser 4',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25 (3).jpeg',
+        title: 'Yeni Eser 5',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25 (2).jpeg',
+        title: 'Yeni Eser 6',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25 (1).jpeg',
+        title: 'Yeni Eser 7',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.25.jpeg',
+        title: 'Yeni Eser 8',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.24 (2).jpeg',
+        title: 'Yeni Eser 9',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.24 (1).jpeg',
+        title: 'Yeni Eser 10',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
+        isDefault: true
+    },
+    {
+        src: 'resimler/yeni eserler/WhatsApp Image 2025-06-14 at 01.31.24.jpeg',
+        title: 'Yeni Eser 11',
+        category: 'yagli-boya',
+        categoryName: 'Yağlı Boya',
+        year: '2025',
         isDefault: true
     }
 ];
 
 // localStorage'dan resimleri al veya varsayılan resimleri kullan
 function getImages() {
-    const savedImages = JSON.parse(localStorage.getItem('galleryImages') || '[]');
+    let savedImages = JSON.parse(localStorage.getItem('galleryImages') || '[]');
     
-    // İlk kez yükleniyorsa varsayılan resimleri kaydet
-    if (savedImages.length === 0) {
-        localStorage.setItem('galleryImages', JSON.stringify(defaultImages));
-        return defaultImages;
+    // Eğer savedImages boşsa veya varsayılan resimlerden farklıysa, defaultImages'ı kullan
+    if (savedImages.length === 0 || !savedImages.some(img => img.isDefault)) {
+        savedImages = defaultImages.map(img => ({ ...img })); // Default resimlerin kopyasını oluştur
+        localStorage.setItem('galleryImages', JSON.stringify(savedImages));
+        return savedImages;
+    }
+
+    // Yılını 2024'ten 2025'e güncelle
+    let updatedImages = savedImages.map(img => {
+        if (img.year === '2024') {
+            return { ...img, year: '2025' };
+        }
+        return img;
+    });
+    
+    // Eğer güncellenen resimler savedImages'dan farklıysa, localStorage'ı güncelle
+    if (JSON.stringify(updatedImages) !== JSON.stringify(savedImages)) {
+        localStorage.setItem('galleryImages', JSON.stringify(updatedImages));
     }
     
-    return savedImages;
+    return updatedImages;
 }
 
 // Yeni resim ekle
@@ -111,7 +213,7 @@ function updateLightboxContent() {
     const currentImage = currentImages[currentIndex];
     lightboxImg.src = currentImage.src;
     lightboxTitle.style.display = 'none';
-    lightboxDesc.textContent = `${currentImage.categoryName}, ${currentImage.year}`;
+    lightboxDesc.textContent = `${currentImage.year}`;
 }
 
 // Navigasyon butonlarını güncelle
@@ -222,4 +324,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-}); 
+});
+
+// Resimleri görüntüleme fonksiyonu
+function displayImages(images) {
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = '';
+
+    images.forEach(img => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.setAttribute('data-category', img.category);
+        galleryItem.setAttribute('data-aos', 'fade-up');
+
+        galleryItem.innerHTML = `
+            <div class="gallery-image">
+                <img src="${img.src}" alt="${img.title}">
+                <div class="gallery-overlay">
+                    <div class="gallery-info">
+                        <p>${img.year}</p>
+                        <div class="gallery-actions">
+                            <button class="action-btn zoom-btn" title="Büyüt">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button class="action-btn info-btn" title="Detaylar">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            ${isLoggedIn ? `
+                            <button class="action-btn delete-btn" title="Sil" onclick="deleteImage('${img.src}')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        gallery.appendChild(galleryItem);
+
+        // Büyütme butonuna tıklama olayını ekle
+        const zoomBtn = galleryItem.querySelector('.zoom-btn');
+        zoomBtn.addEventListener('click', () => {
+            // ... existing code ...
+        });
+    });
+} 

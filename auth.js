@@ -3,71 +3,53 @@ function checkLoginStatus() {
     return localStorage.getItem('isLoggedIn') === 'true';
 }
 
-// Giriş yap
+// Giriş yapma fonksiyonu
 function login(username, password) {
-    // Burada gerçek bir kimlik doğrulama yapılmalı
-    if (username === 'admin' && password === 'admin') {
+    // Burada gerçek bir kimlik doğrulama sistemi olacak
+    // Şimdilik basit bir kontrol yapıyoruz
+    if (username === 'admin' && password === 'admin123') {
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userName', 'Rabia Doğruöz');
-        updateNavigation();
         return true;
     }
     return false;
 }
 
-// Çıkış yap
+// Çıkış yapma fonksiyonu
 function logout() {
-    localStorage.setItem('isLoggedIn', 'false');
-    localStorage.removeItem('userName');
-    updateNavigation();
+    localStorage.removeItem('isLoggedIn');
     window.location.href = 'index.html';
 }
 
-// Navigasyon menüsünü güncelle
-function updateNavigation() {
-    const isLoggedIn = checkLoginStatus();
-    const userName = localStorage.getItem('userName');
-    const loginBtn = document.querySelector('.login-btn');
-    
-    if (isLoggedIn && loginBtn) {
-        loginBtn.textContent = userName;
-        loginBtn.classList.add('logged-in');
-        
-        // Çıkış menüsünü oluştur
-        let logoutMenu = document.querySelector('.logout-menu');
-        if (!logoutMenu) {
-            logoutMenu = document.createElement('div');
-            logoutMenu.className = 'logout-menu';
-           
-            loginBtn.parentNode.appendChild(logoutMenu);
-        }
-        
-        // Tıklama olayını ekle
-        loginBtn.onclick = function(e) {
+// Giriş formunu dinle
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('error-message');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            logoutMenu.classList.toggle('active');
-        };
-        
-        // Sayfa herhangi bir yerine tıklandığında menüyü kapat
-        document.addEventListener('click', function(e) {
-            if (!loginBtn.contains(e.target)) {
-                logoutMenu.classList.remove('active');
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (login(username, password)) {
+                window.location.href = 'index.html';
+            } else {
+                errorMessage.textContent = 'Kullanıcı adı veya şifre hatalı!';
             }
         });
-    } else if (loginBtn) {
-        loginBtn.textContent = 'Giriş Yap';
-        loginBtn.classList.remove('logged-in');
-        loginBtn.onclick = null;
-        
-        // Varsa çıkış menüsünü kaldır
-        const logoutMenu = document.querySelector('.logout-menu');
-        if (logoutMenu) {
-            logoutMenu.remove();
-        }
     }
-}
 
-// Sayfa yüklendiğinde navigasyonu güncelle
-document.addEventListener('DOMContentLoaded', function() {
-    updateNavigation();
+    // Giriş durumunu kontrol et ve admin öğelerini göster/gizle
+    function updateAdminElements() {
+        const isLoggedIn = checkLoginStatus();
+        const adminElements = document.querySelectorAll('.admin-only');
+        adminElements.forEach(el => {
+            el.style.display = isLoggedIn ? 'block' : 'none';
+        });
+    }
+
+    // Sayfa yüklendiğinde ve giriş durumu değiştiğinde admin öğelerini güncelle
+    updateAdminElements();
+    document.addEventListener('loginStatusChanged', updateAdminElements);
 }); 

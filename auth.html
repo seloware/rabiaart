@@ -4,46 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giriş Yap - RabiaDoğruözArt</title>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    
-    <!-- Ziyaretçi İzleme -->
-    <script>
-        function trackVisitor() {
-            const visitorData = {
-                timestamp: new Date().toISOString(),
-                page: window.location.pathname,
-                referrer: document.referrer,
-                screenResolution: `${window.screen.width}x${window.screen.height}`,
-                language: navigator.language,
-                userAgent: navigator.userAgent
-            };
-            
-            const visits = JSON.parse(localStorage.getItem('visits') || '[]');
-            visits.push(visitorData);
-            localStorage.setItem('visits', JSON.stringify(visits));
-
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon('/api/track-visit', JSON.stringify(visitorData));
-            }
-        }
-
-        window.addEventListener('load', trackVisitor);
-    </script>
-
     <link rel="icon" type="image/png" href="resimler/logorabia.png">
     <link rel="apple-touch-icon" href="resimler/logorabia.png">
     <link rel="shortcut icon" href="resimler/logorabia.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <script src="auth.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <nav>
@@ -59,10 +26,10 @@
         </div>
     </nav>
 
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Yönetici Girişi</h2>
-            <form id="loginForm" onsubmit="handleLogin(event)">
+    <section class="auth-section">
+        <div class="auth-container">
+            <h1>Giriş Yap</h1>
+            <form id="loginForm" class="auth-form">
                 <div class="form-group">
                     <label for="username">Kullanıcı Adı</label>
                     <input type="text" id="username" name="username" required>
@@ -71,10 +38,11 @@
                     <label for="password">Şifre</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="login-submit-btn">Giriş Yap</button>
+                <button type="submit" class="auth-btn">Giriş Yap</button>
             </form>
+            <div id="error-message" class="error-message"></div>
         </div>
-    </div>
+    </section>
 
     <footer class="footer">
         <div class="footer-container">
@@ -99,15 +67,6 @@
             </div>
 
             <div class="footer-section">
-                <h3>Kategoriler</h3>
-                <ul class="footer-links">
-                    <li><a href="galeri.html?category=yagli-boya"><i class="fas fa-paint-brush"></i> Yağlı Boya</a></li>
-                    <li><a href="galeri.html?category=karakalem"><i class="fas fa-pencil-alt"></i> Karakalem</a></li>
-                    <li><a href="galeri.html?category=dijital"><i class="fas fa-desktop"></i> Dijital Sanat</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
                 <h3>İletişim</h3>
                 <ul class="footer-links">
                     <li><a href="mailto:dogruozrabia98@gmail.com"><i class="fas fa-envelope"></i> dogruozrabia98@gmail.com</a></li>
@@ -122,17 +81,12 @@
     </footer>
 
     <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        const nav = document.querySelector('nav');
+        const menu = document.querySelector('.menu');
 
-            if (login(username, password)) {
-                window.location.href = 'galeri.html';
-            } else {
-                alert('Hatalı kullanıcı adı veya şifre!');
-            }
-        }
+        menu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
     </script>
 </body>
 </html> 
