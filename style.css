@@ -591,106 +591,130 @@ nav ul li a.active::after {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
 }
 
-.gallery-item {
-    position: relative;
-    border-radius: 10px;
+.gallery-card {
+    background: var(--white);
+    border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    aspect-ratio: 1;
+    position: relative;
 }
 
-.gallery-item:hover {
+.gallery-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-.gallery-image {
+.gallery-card-image {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 300px;
+    overflow: hidden;
 }
 
-.gallery-image img {
+.gallery-card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: var(--transition);
 }
 
-.gallery-item:hover .gallery-image img {
+.gallery-card:hover .gallery-card-image img {
     transform: scale(1.1);
 }
 
-.gallery-overlay {
+.gallery-card-overlay {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
     opacity: 0;
     transition: var(--transition);
     display: flex;
     align-items: flex-end;
     padding: 1.5rem;
-    color: var(--white);
 }
 
-.gallery-item:hover .gallery-overlay {
+.gallery-card:hover .gallery-card-overlay {
     opacity: 1;
 }
 
-.gallery-info {
-    color: white;
+.gallery-card-info {
+    color: var(--white);
     transform: translateY(20px);
-    transition: transform 0.3s ease;
-    width: 100%;
-    text-align: center;
+    transition: var(--transition);
 }
 
-.gallery-item:hover .gallery-info {
+.gallery-card:hover .gallery-card-info {
     transform: translateY(0);
 }
 
-.gallery-info p {
-    margin: 0;
-    font-size: 1rem;
+.gallery-card-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.gallery-card-category {
+    font-size: 0.9rem;
     opacity: 0.9;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
 }
 
-.gallery-actions {
+.gallery-card-year {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.gallery-card-actions {
     display: flex;
-    justify-content: center;
     gap: 0.5rem;
-    margin-top: 1rem;
 }
 
-.action-btn {
+.gallery-card-btn {
+    background: var(--white);
+    border: none;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.2);
-    color: var(--white);
-    cursor: pointer;
-    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-.action-btn:hover {
-    background: var(--white);
-    color: var(--primary-color);
+.gallery-card-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.gallery-card-btn i {
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .gallery-card-image {
+        height: 250px;
+    }
+
+    .gallery-card-info h3 {
+        font-size: 1.1rem;
+    }
 }
 
 .gallery-load-more {

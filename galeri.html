@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="auth.js"></script>
-    <script src="galeri.js"></script>
-    <script src="script.js" defer></script>
 </head>
 <body>
     <nav>
@@ -42,31 +40,23 @@
 
         <div class="gallery-container">
             <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all" style="color: #000;">
-                    <i class="fas fa-border-all" style="color: #000;"></i>
+                <button class="filter-btn active" data-filter="tumu">
+                    <i class="fas fa-border-all"></i>
                     Tümü
                 </button>
             </div>
 
-            <div class="gallery-grid" id="gallery-grid">
+            <div class="gallery-grid">
                 <!-- Resimler JavaScript ile yüklenecek -->
-            </div>
-
-            <div class="gallery-load-more">
-                <button class="load-more-btn" id="load-more-btn">
-                    Daha Fazla Göster
-                    <i class="fas fa-spinner fa-spin"></i>
-                </button>
             </div>
         </div>
     </section>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
+    <div class="lightbox">
         <div class="lightbox-content">
             <div class="lightbox-image">
                 <img src="" alt="Büyük Görsel">
-                <!-- Gezinme butonları -->
                 <div class="lightbox-nav prev" title="Önceki Resim">
                     <i class="fas fa-chevron-left"></i>
                 </div>
@@ -148,199 +138,8 @@
             // Sayfa yüklendiğinde ve giriş durumu değiştiğinde admin öğelerini güncelle
             updateAdminElements();
             document.addEventListener('loginStatusChanged', updateAdminElements);
-
-            // Galeri Filtreleme
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const galleryGrid = document.getElementById('gallery-grid');
-            const loadMoreBtn = document.getElementById('load-more-btn');
-            
-            // Galeri ayarları
-            const settings = {
-                itemsPerPage: 8,
-                currentPage: 1,
-                currentFilter: 'all',
-                loading: false
-            };
-
-            // Galeriyi temizle
-            function clearGallery() {
-                galleryGrid.innerHTML = '';
-            }
-
-            // Resimleri görüntüleme fonksiyonu
-            function displayImages(images, page = 1) {
-                const start = (page - 1) * settings.itemsPerPage;
-                const end = start + settings.itemsPerPage;
-                const paginatedImages = images.slice(start, end);
-                const isLoggedIn = checkLoginStatus();
-
-                paginatedImages.forEach(img => {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    galleryItem.setAttribute('data-category', img.category);
-                    galleryItem.setAttribute('data-aos', 'fade-up');
-
-                    galleryItem.innerHTML = `
-                        <div class="gallery-image">
-                            <img src="${img.src}" alt="${img.title}">
-                            <div class="gallery-overlay">
-                                <div class="gallery-info">
-                                    <p>${img.year}</p>
-                                    <div class="gallery-actions">
-                                        <button class="action-btn zoom-btn" title="Büyüt">
-                                            <i class="fas fa-search-plus"></i>
-                                        </button>
-                                        <button class="action-btn info-btn" title="Detaylar">
-                                            <i class="fas fa-info-circle"></i>
-                                        </button>
-                                        ${isLoggedIn ? `
-                                        <button class="action-btn delete-btn" title="Sil" onclick="deleteImage('${img.src}')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        ` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    galleryGrid.appendChild(galleryItem);
-
-                    // Büyütme butonuna tıklama olayını ekle
-                    const zoomBtn = galleryItem.querySelector('.zoom-btn');
-                    zoomBtn.addEventListener('click', () => {
-                        const lightbox = document.getElementById('lightbox');
-                        const lightboxImg = lightbox.querySelector('.lightbox-image img');
-                        const lightboxDesc = lightbox.querySelector('.lightbox-description');
-                        
-                        // Mevcut resimleri ve indeksi sakla
-                        window.currentImages = filterImages(settings.currentFilter);
-                        window.currentIndex = window.currentImages.findIndex(image => image.src === img.src);
-                        
-                        // Resmi ve bilgileri ayarla
-                        updateLightboxContent();
-                        
-                        // Lightbox'ı göster
-                        lightbox.style.display = 'flex';
-                        setTimeout(() => {
-                            lightbox.classList.add('active');
-                        }, 10);
-                    });
-                });
-
-                // Daha fazla resim var mı kontrol et
-                const filteredImages = filterImages(settings.currentFilter);
-                loadMoreBtn.style.display = end >= filteredImages.length ? 'none' : 'inline-flex';
-                
-                // Loading durumunu güncelle
-                settings.loading = false;
-                loadMoreBtn.classList.remove('loading');
-            }
-
-            // Lightbox içeriğini güncelle
-            function updateLightboxContent() {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = lightbox.querySelector('.lightbox-image img');
-                const lightboxDesc = lightbox.querySelector('.lightbox-description');
-                const prevNav = lightbox.querySelector('.lightbox-nav.prev');
-                const nextNav = lightbox.querySelector('.lightbox-nav.next');
-                
-                const currentImage = window.currentImages[window.currentIndex];
-                lightboxImg.src = currentImage.src;
-                lightboxDesc.textContent = `${currentImage.year}`;
-
-                // Gezinme butonlarını güncelle
-                prevNav.style.display = window.currentIndex > 0 ? 'flex' : 'none';
-                nextNav.style.display = window.currentIndex < window.currentImages.length - 1 ? 'flex' : 'none';
-            }
-
-            // Önceki resme git
-            function showPreviousImage() {
-                if (window.currentIndex > 0) {
-                    window.currentIndex--;
-                    updateLightboxContent();
-                }
-            }
-
-            // Sonraki resme git
-            function showNextImage() {
-                if (window.currentIndex < window.currentImages.length - 1) {
-                    window.currentIndex++;
-                    updateLightboxContent();
-                }
-            }
-
-            // Filtreleme işlemleri
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    
-                    const filter = button.dataset.filter;
-                    settings.currentFilter = filter;
-                    settings.currentPage = 1;
-                    
-                    clearGallery();
-                    displayImages(filterImages(filter));
-                });
-            });
-
-            // Daha fazla göster butonu
-            loadMoreBtn.addEventListener('click', () => {
-                if (settings.loading) return;
-
-                settings.loading = true;
-                loadMoreBtn.classList.add('loading');
-
-                setTimeout(() => {
-                    settings.currentPage++;
-                    displayImages(filterImages(settings.currentFilter), settings.currentPage);
-                }, 500);
-            });
-
-            // İlk yükleme
-            displayImages(filterImages());
-
-            // Lightbox olaylarını ayarla
-            const lightbox = document.getElementById('lightbox');
-            const closeBtn = lightbox.querySelector('.lightbox-close');
-            const prevNav = lightbox.querySelector('.lightbox-nav.prev');
-            const nextNav = lightbox.querySelector('.lightbox-nav.next');
-
-            // Gezinme butonları tıklama olayları
-            prevNav.addEventListener('click', showPreviousImage);
-            nextNav.addEventListener('click', showNextImage);
-
-            // Kapatma olayları
-            closeBtn.addEventListener('click', () => {
-                lightbox.classList.remove('active');
-                setTimeout(() => {
-                    lightbox.style.display = 'none';
-                }, 300);
-            });
-
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                    setTimeout(() => {
-                        lightbox.style.display = 'none';
-                    }, 300);
-                }
-            });
-
-            // Klavye olayları
-            document.addEventListener('keydown', (e) => {
-                if (lightbox.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') {
-                        showPreviousImage();
-                    } else if (e.key === 'ArrowRight') {
-                        showNextImage();
-                    } else if (e.key === 'Escape') {
-                        closeBtn.click();
-                    }
-                }
-            });
         });
     </script>
+    <script src="galeri.js"></script>
 </body>
 </html> 
