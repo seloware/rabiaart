@@ -11,6 +11,8 @@ app.use('/resimler', express.static('resimler'));
 // Dosya listesini getir
 app.get('/api/dosyalar/:dizin', async (req, res) => {
     try {
+        console.log('__dirname:', __dirname); // Hata ayıklama için
+        console.log('İstenen dizin parametresi:', req.params.dizin); // Hata ayıklama için
         const dizinYolu = path.join(__dirname, req.params.dizin);
         console.log('Okunmaya çalışılan dizin yolu:', dizinYolu); // Hata ayıklama için
         const dosyalar = await fs.readdir(dizinYolu);
