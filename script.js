@@ -127,6 +127,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Slider Functionality
+    const sliderTrack = document.querySelector('.slider-track');
+    const prevBtn = document.querySelector('.slider-nav.prev');
+    const nextBtn = document.querySelector('.slider-nav.next');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    if (sliderTrack && prevBtn && nextBtn && galleryItems.length > 0) {
+        let currentIndex = 0;
+        const totalItems = galleryItems.length;
+
+        function updateSlider() {
+            const itemWidth = galleryItems[0].offsetWidth; // Get the width of a single item
+            sliderTrack.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+
+            // Update button visibility (optional, but good for UX)
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalItems - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < totalItems - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        // Initialize slider position
+        updateSlider();
+
+        // Optional: Add resize listener to recalculate itemWidth on window resize
+        window.addEventListener('resize', updateSlider);
+    }
+
     // Auth Tabs Functionality
     const authTabs = document.querySelectorAll('.auth-tab');
     const authForms = document.querySelectorAll('.auth-form');
