@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="resimler/logorabia.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="auth.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -16,7 +17,7 @@
         <a href="index.html">Rabia Doğruöz Art</a>
         <ul>
             <li><a href="hakkimda.html">Hakkımda</a></li>
-            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="galeri.html" target="_blank">Galeri</a></li>
             <li><a href="iletisim.html">İletişim</a></li>
             <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
         </ul>
@@ -124,11 +125,38 @@
     </footer>
 
     <script>
-        const nav = document.querySelector('nav');
-        const menu = document.querySelector('.menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Giriş durumunu kontrol et ve giriş/çıkış butonunu güncelle
+            function updateLoginButton() {
+                const isLoggedIn = checkLoginStatus();
+                const loginBtn = document.querySelector('.login-btn');
+                
+                if (isLoggedIn) {
+                    loginBtn.innerHTML = 'Çıkış Yap';
+                    loginBtn.href = '#';
+                    loginBtn.onclick = function(e) {
+                        e.preventDefault();
+                        logout();
+                        window.location.reload();
+                    };
+                } else {
+                    loginBtn.innerHTML = 'Giriş Yap';
+                    loginBtn.href = 'auth.html';
+                    loginBtn.onclick = null;
+                }
+            }
 
-        menu.addEventListener('click', function() {
-            nav.classList.toggle('active');
+            // Sayfa yüklendiğinde ve giriş durumu değiştiğinde butonu güncelle
+            updateLoginButton();
+            document.addEventListener('loginStatusChanged', updateLoginButton);
+
+            // Mobil menü için
+            const nav = document.querySelector('nav');
+            const menu = document.querySelector('.menu');
+
+            menu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
         });
     </script>
 </body>

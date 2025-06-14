@@ -591,41 +591,51 @@ nav ul li a.active::after {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
 }
 
 .gallery-card {
     background: var(--white);
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     position: relative;
+    width: 100%;
 }
 
 .gallery-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .gallery-card-image {
     position: relative;
     width: 100%;
-    height: 300px;
+    padding-bottom: 100% !important;
+    aspect-ratio: 1 / 1;
+    background-color: var(--light-gray);
     overflow: hidden;
+    display: block !important;
+    flex-shrink: 0;
 }
 
 .gallery-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
     transition: var(--transition);
+    display: block !important;
 }
 
 .gallery-card:hover .gallery-card-image img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .gallery-card-overlay {
@@ -639,7 +649,7 @@ nav ul li a.active::after {
     transition: var(--transition);
     display: flex;
     align-items: flex-end;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .gallery-card:hover .gallery-card-overlay {
@@ -648,7 +658,7 @@ nav ul li a.active::after {
 
 .gallery-card-info {
     color: var(--white);
-    transform: translateY(20px);
+    transform: translateY(15px);
     transition: var(--transition);
 }
 
@@ -657,21 +667,18 @@ nav ul li a.active::after {
 }
 
 .gallery-card-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.gallery-card-category {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    font-size: 1.1rem;
     margin-bottom: 0.3rem;
 }
 
+.gallery-card-category {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+}
+
 .gallery-card-year {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
 }
 
 .gallery-card-actions {
@@ -682,14 +689,15 @@ nav ul li a.active::after {
 .gallery-card-btn {
     background: var(--white);
     border: none;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: var(--transition);
+    font-size: 0.9rem;
 }
 
 .gallery-card-btn:hover {
@@ -703,27 +711,27 @@ nav ul li a.active::after {
 
 @media (max-width: 768px) {
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
     }
 
     .gallery-card-image {
-        height: 250px;
+        padding-bottom: 100%;
     }
 
     .gallery-card-info h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
 
 .gallery-load-more {
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .load-more-btn {
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     border: none;
     background: var(--secondary-color);
     color: var(--white);
@@ -733,7 +741,7 @@ nav ul li a.active::after {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .load-more-btn:hover {
