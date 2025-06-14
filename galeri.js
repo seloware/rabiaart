@@ -6,22 +6,22 @@ const resimDizinleri = {
 // Resimleri yükle
 async function resimleriYukle() {
     const resimler = [];
-    const dizin = resimDizinleri.tumu; // Sadece 'resimler' dizinini kullan
+    const dizin = resimDizinleri.tumu;
     try {
-        const yanit = await fetch(`/api/dosyalar/${dizin}`);
+        const yanit = await fetch(`http://localhost:5500/api/dosyalar/${dizin}`);
         if (yanit.ok) {
             const dosyalar = await yanit.json();
+            console.log('Yüklenen dosyalar:', dosyalar); // Hata ayıklama için
             dosyalar.forEach(dosya => {
                 if (dosya.endsWith('.jpg') || dosya.endsWith('.jpeg') || dosya.endsWith('.png')) {
-                    if (dosya !== 'profil.jpeg' && dosya !== 'logorabia.png') {
-                        resimler.push({
-                            src: `${dizin}/${dosya}`,
-                            baslik: dosya.split('.')[0].replace(/-/g, ' '),
-                            yil: '2025'
-                        });
-                    }
+                    resimler.push({
+                        src: `${dizin}/${dosya}`,
+                        baslik: dosya.split('.')[0].replace(/-/g, ' '),
+                        yil: '2025'
+                    });
                 }
             });
+            console.log('İşlenen resimler:', resimler); // Hata ayıklama için
         } else {
             console.error(`${dizin} dizini için yanıt başarısız:`, yanit.status);
         }

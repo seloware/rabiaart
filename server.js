@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
 const app = express();
-const port = 3000;
+const port = 5500;
 
 // Statik dosyaları sun
 app.use(express.static('./'));
