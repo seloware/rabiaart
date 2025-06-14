@@ -5,32 +5,17 @@ const app = express();
 const port = 5500;
 
 // Statik dosyaları sun
-app.use(express.static('./'));
-app.use('/resimler', express.static('resimler'));
+app.use(express.static(path.join(__dirname)));
 
 // Dosya listesini getir
 app.get('/api/dosyalar/:dizin', async (req, res) => {
     try {
-        console.log('__dirname:', __dirname); // Hata ayıklama için
-        console.log('İstenen dizin parametresi:', req.params.dizin); // Hata ayıklama için
         const dizinYolu = path.join(__dirname, req.params.dizin);
-        console.log('Okunmaya çalışılan dizin yolu:', dizinYolu); // Hata ayıklama için
         const dosyalar = await fs.readdir(dizinYolu);
         res.json(dosyalar);
     } catch (hata) {
-        console.error('Dosya listesi alınırken hata oluştu:', hata);
-        res.status(500).json({ hata: 'Dosya listesi alınamadı' });
+        res.status(500).send('Dosyalar yüklenirken bir hata oluştu.');
     }
-});
-
-// Ana sayfa
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Galeri sayfası
-app.get('/galeri', (req, res) => {
-    res.sendFile(path.join(__dirname, 'galeri.html'));
 });
 
 // Sunucuyu başlat

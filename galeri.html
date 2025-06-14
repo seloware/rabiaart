@@ -3,143 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri - RabiaDoğruözArt</title>
-    <link rel="icon" type="image/png" href="resimler/logorabia.png">
-    <link rel="apple-touch-icon" href="resimler/logorabia.png">
-    <link rel="shortcut icon" href="resimler/logorabia.png">
+    <title>Galeri</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="auth.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Rabia Doğruöz Art</a>
-        <ul>
-            <li><a href="hakkimda.html">Hakkımda</a></li>
-            <li><a href="galeri.html" class="active">Galeri</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
-            <li><a href="auth.html" class="login-btn">Giriş Yap</a></li>
-            <li class="admin-only" style="display: none;">
-                <a href="upload.html" class="upload-btn">
-                    <i class="fas fa-upload"></i> Resim Yükle
-                </a>
-            </li>
-        </ul>
-        <div class="menu">
-            <div class="toggle"></div>
-        </div>
-    </nav>
-
-    <section class="gallery-section">
-        <div class="gallery-hero">
-            <h1>Sanat Galerisi</h1>
-            <p class="gallery-subtitle">Eserlerimi keşfedin</p>
-        </div>
-
-        <div class="gallery-container">
-            <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="tumu">
-                    <i class="fas fa-border-all"></i>
-                    Tümü
-                </button>
-            </div>
-
-            <div class="gallery-grid">
-                <!-- Resimler JavaScript ile yüklenecek -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div class="lightbox">
-        <div class="lightbox-content">
-            <div class="lightbox-image">
-                <img src="" alt="Büyük Görsel">
-                <div class="lightbox-nav prev" title="Önceki Resim">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="lightbox-nav next" title="Sonraki Resim">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            <div class="lightbox-info">
-                <h2 class="lightbox-title"></h2>
-                <p class="lightbox-description"></p>
-            </div>
-            <button class="lightbox-close" title="Kapat">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+    <div id="galeri">
+        <h1>Galeri</h1>
+        <div id="resimler"></div>
     </div>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>Hakkımda</h3>
-                <p>Ben Rabia Doğruöz. Dijital sanat ve illüstrasyon alanında çalışmalar yapıyorum. Sanatımla duyguları ve hikayeleri görsel bir dille anlatmaya çalışıyorum.</p>
-                <div class="social-links">
-                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://behance.net" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
-                    <a href="https://pinterest.com" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h3>Hızlı Bağlantılar</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
-                    <li><a href="hakkimda.html"><i class="fas fa-user"></i> Hakkımda</a></li>
-                    <li><a href="galeri.html"><i class="fas fa-images"></i> Galeri</a></li>
-                    <li><a href="iletisim.html"><i class="fas fa-envelope"></i> İletişim</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>İletişim</h3>
-                <ul class="footer-links">
-                    <li><a href="mailto:dogruozrabia98@gmail.com"><i class="fas fa-envelope"></i> dogruozrabia98@gmail.com</a></li>
-                    <li><a href="https://maps.google.com" target="_blank"><i class="fas fa-map-marker-alt"></i> Ankara, Türkiye</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Rabia Doğruöz. Tüm hakları saklıdır. | <a href="gizlilik.html">Gizlilik Politikası</a> | <a href="kullanim-sartlari.html">Kullanım Şartları</a></p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // AOS başlat
-            AOS.init({
-                duration: 1000,
-                once: true
-            });
-
-            // Mobil menü için
-            const nav = document.querySelector('nav');
-            const menu = document.querySelector('.menu');
-
-            menu.addEventListener('click', function() {
-                nav.classList.toggle('active');
-            });
-
-            // Giriş durumunu kontrol et ve admin öğelerini göster/gizle
-            function updateAdminElements() {
-                const isLoggedIn = checkLoginStatus();
-                const adminElements = document.querySelectorAll('.admin-only');
-                adminElements.forEach(el => {
-                    el.style.display = isLoggedIn ? 'block' : 'none';
-                });
-            }
-
-            // Sayfa yüklendiğinde ve giriş durumu değiştiğinde admin öğelerini güncelle
-            updateAdminElements();
-            document.addEventListener('loginStatusChanged', updateAdminElements);
-        });
-    </script>
     <script src="galeri.js"></script>
 </body>
 </html> 
