@@ -6,14 +6,22 @@
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-    overflow: visible !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
 }
 
 .gallery-card {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    margin: 0 !important;
+    max-width: unset !important;
+    max-height: unset !important;
     background: white;
     border-radius: 8px;
     overflow: hidden;
@@ -28,17 +36,21 @@
 }
 
 .gallery-card-image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
 }
 
 .gallery-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 8px !important;
+    display: block !important;
     transition: transform 0.4s cubic-bezier(.4,2,.6,1);
 }
 
@@ -228,4 +240,9 @@ body::after {
         grid-template-columns: 1fr;
         gap: 15px;
     }
+}
+
+.small-art {
+    transform: scale(0.7);
+    transition: transform 0.3s;
 } 
