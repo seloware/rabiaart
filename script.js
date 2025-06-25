@@ -393,22 +393,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Gallery lightbox functionality
-window.onload = () => {
-    const images = document.querySelectorAll('.gallery .images .img');
-    images.forEach((image, index) => {
-        image.onclick = () => {
-            const imgSrc = image.querySelector('img').src;
-            previewBox.src = imgSrc;
-            lightbox.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        };
-    });
-}
+// window.onload = () => {
+//     const images = document.querySelectorAll('.gallery .images .img');
+//     images.forEach((image, index) => {
+//         image.onclick = () => {
+//             const imgSrc = image.querySelector('img').src;
+//             previewBox.src = imgSrc;
+//             lightbox.classList.add('show');
+//             document.body.style.overflow = 'hidden';
+//         };
+//     });
+// }
 
 // Close lightbox
-if (closeIcon) {
-    closeIcon.onclick = () => {
-        lightbox.classList.remove('show');
-        document.body.style.overflow = 'auto';
-    };
-}
+// if (closeIcon) {
+//     closeIcon.onclick = () => {
+//         lightbox.classList.remove('show');
+//         document.body.style.overflow = 'auto';
+//     };
+// }
