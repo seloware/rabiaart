@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rabiadogruozart.com/sitemap.xml
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all images
+Allow: /resimler/
+
+# Crawl-delay (optional, in seconds)
+Crawl-delay: 1
